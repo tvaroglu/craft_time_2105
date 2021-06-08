@@ -45,9 +45,12 @@ class Event
     grouping = @crafts.each_with_object({}) { |craft, hash| hash[craft] = Array.new }
     grouping = grouping.each do |craft, attendees_array|
       @attendees.each do |attendee|
-        attendees_array << attendee if (attendee.can_build?(craft) && attendees_array.index(attendee) == nil)
+        if ((attendee.can_build?(craft) && attendee.interests.any? { |interest| interest == craft.name }) && attendees_array.index(attendee) == nil)
+          attendees_array << attendee
+        end
       end
     end
+    # require "pry"; binding.pry
   end
 
 end
