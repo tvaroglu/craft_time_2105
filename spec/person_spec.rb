@@ -1,10 +1,13 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'rspec'
 require_relative '../lib/person'
 require_relative '../lib/craft'
 
 RSpec.describe Person do
 
-  xit 'initializes' do
+  it 'initializes' do
     person = Person.new({
       name: 'Hector',
       interests: ['sewing', 'millinery', 'drawing']
@@ -16,7 +19,7 @@ RSpec.describe Person do
     expect(person.supplies).to eq({})
   end
 
-  xit 'can add supplies' do
+  it 'can add supplies' do
     person = Person.new({
       name: 'Hector',
       interests: ['sewing', 'millinery', 'drawing']

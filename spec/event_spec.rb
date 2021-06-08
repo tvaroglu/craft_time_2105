@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'rspec'
 require_relative '../lib/person'
 require_relative '../lib/craft'
@@ -5,7 +8,7 @@ require_relative '../lib/event'
 
 RSpec.describe Event do
 
-  xit 'initializes' do
+  it 'initializes' do
     person = Person.new({
       name: 'Hector',
       interests: ['sewing', 'millinery', 'drawing']
@@ -26,7 +29,7 @@ RSpec.describe Event do
     expect(event.attendees.first.name).to eq('Hector')
   end
 
-  xit 'can return statistics' do
+  it 'can return statistics' do
     hector = Person.new({
       name: 'Hector',
       interests: ['sewing', 'millinery', 'drawing']
@@ -58,7 +61,7 @@ RSpec.describe Event do
     expect(hector.can_build?(sewing)).to be true
   end
 
-  xit 'can return attendees interested in each craft and assess craft requirements' do
+  it 'can return attendees interested in each craft and assess craft requirements' do
     hector = Person.new({
       name: 'Hector',
       interests: ['sewing', 'millinery', 'drawing']
