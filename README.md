@@ -5,7 +5,7 @@
 * Complete the activity below.
 * Push your solution to your forked repo
 * Submit a pull request from your repository to this repository
-  * Put your name in your PR!
+  * Put your name in your PR title!
 
 ## Iteration 1 - Craft, Person, and Event
 
