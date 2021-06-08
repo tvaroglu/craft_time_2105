@@ -58,4 +58,56 @@ RSpec.describe Event do
     expect(hector.can_build?(sewing)).to be true
   end
 
+  xit 'can assign attendees to crafts and assess craft requirements' do
+    hector = Person.new({
+      name: 'Hector',
+      interests: ['sewing', 'millinery', 'drawing']
+      })
+    toni = Person.new({
+      name: 'Toni',
+      interests: ['sewing', 'knitting']
+      })
+    brian = Person.new({
+      name: 'Brian',
+      interests: ['drawing', 'knitting']
+      })
+    sewing = Craft.new('sewing',
+      {fabric: 5, scissors: 1, thread: 1, sewing_needles: 1})
+    knitting = Craft.new('knitting',
+      {yarn: 20, scissors: 1, knitting_needles: 2})
+    painting = Craft.new('painting',
+      {canvas: 1, paint_brush: 2, paints: 5})
+    event = Event.new("Carla's Craft Connection", [knitting, painting, sewing], [hector, toni, brian])
+
+    expected = event.attendees_by_craft_interest
+    expect(expected.class).to eq(Hash)
+    expect(expected.keys.length).to eq(3)
+    expect(expected.values.length).to eq(3)
+
+    data_validation = expected.values.all? { |value| value.class == Array }
+    expect(data_validation).to be true
+
+    expect(expected['knitting'].length).to eq(2)
+    expect(expected['knitting'].first.name).to eq('Toni')
+    expect(expected['knitting'].last.name).to eq('Brian')
+
+    expect(expected['painting'].length).to eq(0)
+
+    expect(expected['sewing'].length).to eq(2)
+    expect(expected['sewing'].first.name).to eq('Hector')
+    expect(expected['sewing'].last.name).to eq('Toni')
+
+
+    expected = event.crafts_that_use('scissors')
+    
+    expect(expected.class).to eq(Array)
+    expect(expected.length).to eq(2)
+    expect(expected.first.name).to eq('knitting')
+    expect(expected.last.name).to eq('sewing')
+
+    expected = event.crafts_that_use('fire')
+
+    expect(expected.class).to eq(Array)
+    expect(expected.length).to eq(0)
+  end
 end
