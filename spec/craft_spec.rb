@@ -13,9 +13,6 @@ RSpec.describe Craft do
   end
 
   xit 'can add do more stuff' do
-    craft = Craft.new('knitting',
-      {yarn: 20, scissors: 1, knitting_needles: 2})
-
     # stuff
   end
 
