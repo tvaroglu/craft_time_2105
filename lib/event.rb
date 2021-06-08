@@ -41,4 +41,13 @@ class Event
     @crafts.select { |craft| craft.supplies_required.keys.index(supply.to_sym) != nil }
   end
 
+  def assign_attendees_to_crafts
+    grouping = @crafts.each_with_object({}) { |craft, hash| hash[craft] = Array.new }
+    grouping = grouping.each do |craft, attendees_array|
+      @attendees.each do |attendee|
+        attendees_array << attendee if (attendee.can_build?(craft) && attendees_array.index(attendee) == nil)
+      end
+    end
+  end
+
 end

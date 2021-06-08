@@ -19,7 +19,7 @@ class Person
       supplies_required = craft.supplies_required.sort_by { |supply, quantity_required| supply }.to_h
       current_supplies = @supplies.sort_by { |item, quantity| item }.to_h
       current_supplies.each do |item, quantity|
-        if quantity < supplies_required[item.to_sym]
+        if quantity < supplies_required[item.to_sym].to_i
           result = false
           break
         end

@@ -163,10 +163,11 @@ RSpec.describe Event do
     expect(expected.values.length).to eq(3)
 
     data_validation = expected.values.all? { |value| value.class == Array }
+
     expect(data_validation).to be true
 
-    expect(expected['sewing'].length).to eq(2)
-    expect(expected['painting'].length).to eq(0)
-    expect(expected['knitting'].length).to eq(1)
+    expect(expected.values[0].length).to eq(1)
+    expect(expected.values[1].length).to eq(0)
+    expect(expected.values[1].length).to eq(2)
   end
 end
