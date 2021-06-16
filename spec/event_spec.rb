@@ -114,7 +114,7 @@ RSpec.describe Event do
     expect(expected.length).to eq(0)
   end
 
-  it 'can return attendees interested in each craft and assess craft requirements' do
+  it 'can assign attendees to crafts' do
     hector = Person.new({
       name: 'Hector',
       interests: ['sewing', 'millinery', 'drawing']
@@ -154,8 +154,12 @@ RSpec.describe Event do
     hector.add_supply('paint_brush', 10)
     hector.add_supply('paints', 20)
 
-    event = Event.new("Carla's Craft Connection", [knitting, sewing, painting], [hector, toni, brian])
-
+    event = Event.new("Carla's Craft Connection", [
+      knitting, sewing, painting
+      ], [
+        hector, toni, brian
+      ]
+    )
     expected = event.assign_attendees_to_crafts
 
     expect(expected.class).to eq(Hash)
@@ -179,4 +183,5 @@ RSpec.describe Event do
     expect(expected.keys[2].name).to eq('painting')
     expect(expected.values[2].length).to eq(0)
   end
+
 end
